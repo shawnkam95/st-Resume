@@ -47,30 +47,6 @@ def main():
     )
 
     st.title("Shawn Kam's Resume")
-    image_path = os.path.expanduser("~/st-Resume/Resume.jpg")
-    profile_image = Image.open(image_path)
-
-    # Add a decorative border and shadow to the profile image
-    st.markdown(
-        f"""
-        <div style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #4a47a3;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-            "
-        >
-            <img src="data:image/jpeg;base64,{image_to_base64(profile_image)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
     st.write("Kuala Lumpur, Malaysia | yuenhoe95@gmail.com | Phone: +6016-6975731 | [LinkedIn](https://www.linkedin.com/in/shawn-kam-27b454129/)")
 
     st.markdown("---")
