@@ -45,14 +45,47 @@ def main():
         """,
         unsafe_allow_html=True,
     )
+    
+    
+# Set the URL of the image
+image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg?raw=true"
 
-    # Set the URL of the image
-    image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg?raw=true"
-
-    # Load the image from the URL using requests and PIL
-    st.title("Shawn Kam's Resume")
+st.title("Shawn Kam's Resume")
+# Load the image from the URL using requests and PIL
+try:
     response = requests.get(image_url)
+    response.raise_for_status()
     profile_image = Image.open(BytesIO(response.content))
+except requests.exceptions.HTTPError as err:
+    st.error(f"HTTP Error: {err}")
+    profile_image = None
+except Exception as e:
+    st.error(f"Error: {e}")
+    profile_image = None
+
+# Display the profile image if it was loaded successfully
+if profile_image is not None:
+    st.markdown(
+        f"""
+        <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #4a47a3;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+            "
+        >
+            <img src="data:image/jpeg;base64,{image_to_base64(profile_image)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+else:
+    st.error("Failed to load profile image.")
 
     # Add a decorative border and shadow to the profile image
     st.markdown(
@@ -144,28 +177,6 @@ def main():
 
     st.header("Professional Certificate")
     st.subheader("SAS Analytics, SAS")
-    response2 = requests.get(image_url2)
-    profile_image2 = Image.open(BytesIO(response.content))
-
-    st.markdown(
-        f"""
-        <div style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #4a47a3;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-            "
-        >
-            <img src="data:image/jpeg;base64,{image_to_base64(profile_image2)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
     st.markdown("---")
 
     st.header("References")
