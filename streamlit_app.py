@@ -140,7 +140,7 @@ def main():
     st.markdown("---")
     
     # Set the URL of the image
-    image_url2 = "https://raw.githubusercontent.com/shawnkam95/st-Resume/main/path/to/SAS BADGE.jpg"
+    image_url2 = "https://github.com/shawnkam95/st-Resume/blob/main/SAS%20BADGE.jpg"
 
     st.header("Professional Certificate")
     st.subheader("SAS Analytics, SAS")
