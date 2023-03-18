@@ -47,7 +47,7 @@ def main():
     )
 
     # Set the URL of the image
-    image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg"
+    image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg?raw=true"
 
     # Load the image from the URL using requests and PIL
     st.title("Shawn Kam's Resume")
