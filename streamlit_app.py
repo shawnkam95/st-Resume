@@ -1,58 +1,54 @@
 import streamlit as st
 import os
 import base64
-import requests
 from PIL import Image
 from io import BytesIO
-
-def image_to_base64(image):
-    with BytesIO() as buffer:
-        image.save(buffer, "jpeg")
-        return base64.b64encode(buffer.getvalue()).decode()
 
 
 def main():
     st.set_page_config(page_title="Shawn Kam - Resume", layout="centered")
-    st.title("Shawn Kam's Resume")
-    
-# Set the URL of the image
-image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg?raw=true"
 
-# Load the image from the URL using requests and PIL
-try:
-    response = requests.get(image_url)
-    response.raise_for_status()
-    profile_image = Image.open(BytesIO(response.content))
-except requests.exceptions.HTTPError as err:
-    st.error(f"HTTP Error: {err}")
-    profile_image = None
-except Exception as e:
-    st.error(f"Error: {e}")
-    profile_image = None
-
-# Display the profile image if it was loaded successfully
-if profile_image is not None:
     st.markdown(
         f"""
-        <div style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #4a47a3;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-            "
-        >
-            <img src="data:image/jpeg;base64,{image_to_base64(profile_image)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-        </div>
+        <style>
+            /* Change the font */
+            body {{
+                font-family: 'Georgia', serif;
+            }}
+            h1 {{
+                color: #4a47a3;
+            }}
+            h2 {{
+                color: #2e9cca;
+            }}
+            h3 {{
+                color: #a4161a;
+            }}
+            a {{
+                color: #0e9aa7;
+            }}
+        </style>
         """,
         unsafe_allow_html=True,
     )
-else:
-    st.error("Failed to load profile image.")
+
+    # Add a decorative border to the page
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            border: 2px solid #4a47a3;
+            border-radius: 10px;
+            padding: 1em;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.title("Shawn Kam's Resume")
+    image_path = os.path.expanduser("~/st-Resume/Resume.jpg")
+    profile_image = Image.open(image_path)
 
     # Add a decorative border and shadow to the profile image
     st.markdown(
@@ -138,9 +134,6 @@ else:
     st.write("- Conducted in-depth sales reviews, analyzing customer demographics, conversion rates, and overall performance.")
     st.write("- Coordinated slot arrangements and provided visual suggestions to maximize product exposure and sales potential.")
     st.markdown("---")
-    
-    # Set the URL of the image
-    image_url2 = "https://raw.githubusercontent.com/shawnkam95/st-Resume/main/SAS%20BADGE.jpg"
 
     st.header("Professional Certificate")
     st.subheader("SAS Analytics, SAS")
