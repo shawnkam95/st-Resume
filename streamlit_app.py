@@ -46,9 +46,13 @@ def main():
         unsafe_allow_html=True,
     )
 
+    # Set the URL of the image
+    image_url = "https://raw.githubusercontent.com/shawnkam95/st-Resume/main/path/to/Resume.jpg"
+
+    # Load the image from the URL using requests and PIL
     st.title("Shawn Kam's Resume")
-    image_path = os.path.expanduser("~/st-Resume/Resume.jpg")
-    profile_image = Image.open(image_path)
+    response = requests.get(image_url)
+    profile_image = Image.open(BytesIO(response.content))
 
     # Add a decorative border and shadow to the profile image
     st.markdown(
@@ -134,11 +138,14 @@ def main():
     st.write("- Conducted in-depth sales reviews, analyzing customer demographics, conversion rates, and overall performance.")
     st.write("- Coordinated slot arrangements and provided visual suggestions to maximize product exposure and sales potential.")
     st.markdown("---")
+    
+    # Set the URL of the image
+    image_url2 = "https://raw.githubusercontent.com/shawnkam95/st-Resume/main/path/to/SAS BADGE.jpg"
 
     st.header("Professional Certificate")
     st.subheader("SAS Analytics, SAS")
-    image_path2 = os.path.expanduser("~/st-Resume/SAS BADGE.jpg")
-    profile_image2 = Image.open(image_path2)
+    response2 = requests.get(image_url2)
+    profile_image2 = Image.open(BytesIO(response.content))
 
     st.markdown(
         f"""
