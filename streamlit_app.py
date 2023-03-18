@@ -13,50 +13,11 @@ def image_to_base64(image):
 
 def main():
     st.set_page_config(page_title="Shawn Kam - Resume", layout="centered")
-
-    st.markdown(
-        f"""
-        <style>
-            /* Change the font */
-            body {{
-                font-family: 'Georgia', serif;
-            }}
-            h1 {{
-                color: #4a47a3;
-            }}
-            h2 {{
-                color: #2e9cca;
-            }}
-            h3 {{
-                color: #a4161a;
-            }}
-            a {{
-                color: #0e9aa7;
-            }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Add a decorative border to the page
-    st.markdown(
-        """
-        <style>
-        .stApp {
-            border: 2px solid #4a47a3;
-            border-radius: 10px;
-            padding: 1em;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-    
+    st.title("Shawn Kam's Resume")
     
 # Set the URL of the image
 image_url = "https://github.com/shawnkam95/st-Resume/blob/main/Resume.jpg?raw=true"
 
-st.title("Shawn Kam's Resume")
 # Load the image from the URL using requests and PIL
 try:
     response = requests.get(image_url)
