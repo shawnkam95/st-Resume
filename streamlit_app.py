@@ -5,6 +5,11 @@ import requests
 from PIL import Image
 from io import BytesIO
 
+def image_to_base64(image):
+    with BytesIO() as buffer:
+        image.save(buffer, "jpeg")
+        return base64.b64encode(buffer.getvalue()).decode()
+
 
 def main():
     st.set_page_config(page_title="Shawn Kam - Resume", layout="centered")
@@ -182,13 +187,6 @@ else:
 
     st.header("References")
     st.write("Available upon request.")
-
-
-def image_to_base64(image):
-    buffered = BytesIO()
-    image.save(buffered, format="JPEG")
-    return base64.b64encode(buffered.getvalue()).decode()
-
 
 
 if __name__ == "__main__":
